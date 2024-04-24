@@ -7,7 +7,7 @@ you probably also noticed how many additional fourth-party scripts are lazy load
 This could lead to malicious JavaScript being loaded to your page, which could be catastrophic, 
 especially when building payment gateways.
 
-It even helps you with adding dynamic [Nonce-Tokens](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/nonce) when not using the `unsafe-inline` directive **(which you should avoid)**
+It even helps you with adding dynamic [Nonce-Tokens](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/nonce) when **not** using the `unsafe-inline` directive **(which you should avoid)**
 
 ## Requirements
 
