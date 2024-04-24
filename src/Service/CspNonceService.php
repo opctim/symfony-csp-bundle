@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Opctim\CspBundle\Service;
 
+use Exception;
 use Opctim\CspBundle\Exception\NonceHandleNotFoundException;
-use Random\RandomException;
 
 class CspNonceService
 {
@@ -28,7 +28,7 @@ class CspNonceService
     {
         try {
             $randomBytes = random_bytes(8);
-        } catch (RandomException) {
+        } catch (Exception) {
             $randomBytes = openssl_random_pseudo_bytes(8);
         }
 

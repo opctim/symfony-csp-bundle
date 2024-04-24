@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Opctim\CspBundle\Service;
 
-readonly class CspHeaderBuilderService
+class CspHeaderBuilderService
 {
     public function __construct(
         private CspNonceService $cspNonceService,
