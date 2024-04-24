@@ -1,0 +1,11 @@
+--TEST--
+Check return of a generated csp nonce based on the handle 'test'
+
+--TEMPLATE--
+{{ csp_nonce('test') }}
+
+--DATA--
+return []
+
+--EXPECT--
+TEST

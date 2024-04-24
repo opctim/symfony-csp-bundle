@@ -1,0 +1,13 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    Opctim\CspBundle\:
+        resource: '../src/*'
+        exclude: '../src/{DependencyInjection,Event,Exception,Resources,Entity,Migrations}'
+
+    Opctim\CspBundle\Twig\:
+        resource: '../src/Twig/*'
+        tags: [ 'twig.extension' ]

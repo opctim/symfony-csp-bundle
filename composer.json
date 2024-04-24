@@ -1,0 +1,44 @@
+{
+  "name": "opctim/symfony-csp-bundle",
+  "description": "This bundle helps to properly secure your application using the CSP header in a symfony application.",
+  "type": "symfony-bundle",
+  "license": "MIT",
+  "require": {
+    "php": ">=8.2",
+    "ext-openssl": "*",
+    "symfony/framework-bundle": "^6.4 || ^7.0",
+    "symfony/event-dispatcher": "^6.4 || ^7.0"
+  },
+  "suggest": {
+    "twig/twig": "For using the csp_nonce() method in templates."
+  },
+  "authors": [
+    {
+      "name": "@opctim / Tim Nelles",
+      "email": "kontakt@timnelles.de",
+      "homepage": "https://github.com/opctim",
+      "role": "Developer"
+    },
+    {
+      "name": "@alaugks / André Laugks",
+      "email": "package@pb82.de",
+      "homepage": "https://github.com/alaugks",
+      "role": "Contributor"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Opctim\\CspBundle\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Opctim\\CspBundle\\Tests\\": "tests/"
+    }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^8.5",
+    "symfony/yaml": "^7.0",
+    "twig/twig": "^3.9"
+  }
+}

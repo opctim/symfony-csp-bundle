@@ -1,0 +1,45 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: true
+
+    Opctim\CspBundle\:
+        public: true
+        resource: '../../src/*'
+        exclude: '../../src/{DependencyInjection,Exception,Resources,Entity,Migrations,Tests,Event}'
+
+opctim_csp_bundle:
+
+    always_add:
+        - '*.example.com'
+
+    directives:
+        default-src:
+            - "'self'"
+            - 'data:'
+            - '*.example.com'
+        base-uri:
+            - "'self'"
+        object-src:
+            - "'none'"
+        script-src:
+            - "'self'"
+            - "nonce(payment-app)"
+            - '*.example.com'
+        img-src:
+            - "'self'"
+            - '*.example.com'
+        style-src:
+            - "'self'"
+            - "'unsafe-inline'"
+        connect-src:
+            - '*.example.com'
+        font-src:
+            - '*.example.com'
+        frame-src:
+            - "'self'"
+            - '*.example.com'
+        frame-ancestors:
+            - "'self'"
+            - '*.example.com'
