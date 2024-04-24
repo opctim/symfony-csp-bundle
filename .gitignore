@@ -1,5 +1,4 @@
 /vendor/
 /composer.lock
 /.phpunit.result.cache
-/.idea/codeStyles/codeStyleConfig.xml
-/.idea/php-docker-settings.xml
+/.idea
