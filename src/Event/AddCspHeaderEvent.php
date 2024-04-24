@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Opctim\CspBundle\Event;
 
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Contracts\EventDispatcher\Event;
 
 class AddCspHeaderEvent extends Event
@@ -13,6 +14,13 @@ class AddCspHeaderEvent extends Event
 
     private bool $isModified = false;
 
+    private Request $request;
+
+
+    public function __construct(Request $request)
+    {
+        $this->request = $request;
+    }
 
     public function getCspHeaderValue(): ?string
     {
@@ -29,5 +37,10 @@ class AddCspHeaderEvent extends Event
     public function isModified(): bool
     {
         return $this->isModified;
+    }
+
+    public function getRequest(): Request
+    {
+        return $this->request;
     }
 }

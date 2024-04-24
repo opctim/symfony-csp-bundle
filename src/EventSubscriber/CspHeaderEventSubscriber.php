@@ -35,9 +35,9 @@ class CspHeaderEventSubscriber implements EventSubscriberInterface
         ];
     }
 
-    public function onKernelRequest(): void
+    public function onKernelRequest(RequestEvent $event): void
     {
-        $addCspHeaderEvent = new AddCspHeaderEvent();
+        $addCspHeaderEvent = new AddCspHeaderEvent($event->getRequest());
 
         $this->eventDispatcher->dispatch($addCspHeaderEvent, AddCspHeaderEvent::NAME);
 
