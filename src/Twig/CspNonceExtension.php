@@ -9,10 +9,14 @@ use Twig\TwigFunction;
 
 class CspNonceExtension extends AbstractExtension
 {
+    private CspNonceService $cspNonceService;
+
     public function __construct(
-        private readonly CspNonceService $cspNonceService
+        CspNonceService $cspNonceService
     )
-    {}
+    {
+        $this->cspNonceService = $cspNonceService;
+    }
 
     public function getFunctions(): array
     {
