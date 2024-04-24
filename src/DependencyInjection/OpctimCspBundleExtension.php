@@ -32,8 +32,8 @@ class OpctimCspBundleExtension extends Extension
 
         $parser = $container->getDefinition(CspHeaderBuilderService::class);
 
-        $parser->setArgument('alwaysAdd', $configs['always_add']);
-        $parser->setArgument('directives', $configs['directives']);
+        $parser->setArgument('$alwaysAdd', $configs['always_add']);
+        $parser->setArgument('$directives', $configs['directives']);
     }
 
     /**

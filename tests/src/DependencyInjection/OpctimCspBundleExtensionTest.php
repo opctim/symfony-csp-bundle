@@ -41,7 +41,7 @@ class OpctimCspBundleExtensionTest extends TestCase
 
         $definition = $containerBuilder->getDefinition(CspHeaderBuilderService::class);
 
-        self::assertEquals($definition->getArgument('alwaysAdd'), $alwaysAdd);
-        self::assertEquals($definition->getArgument('directives'), $directives);
+        self::assertEquals($definition->getArgument('$alwaysAdd'), $alwaysAdd);
+        self::assertEquals($definition->getArgument('$directives'), $directives);
     }
 }
