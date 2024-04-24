@@ -224,7 +224,7 @@ class ModifyCspHeaderEventSubscriber implements EventSubscriberInterface
         ];
     }
     
-    public function modifyCspHeader(AddCspHeaderEvent $event) 
+    public function modifyCspHeader(AddCspHeaderEvent $event): void
     {
         // Use the request if you like
         $request = $event->getRequest();
