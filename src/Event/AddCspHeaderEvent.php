@@ -7,7 +7,7 @@ use Symfony\Contracts\EventDispatcher\Event;
 
 class AddCspHeaderEvent extends Event
 {
-    public const string NAME = 'opctim_add_csp_header';
+    public const string NAME = 'opctim_csp_bundle.add_csp_header';
 
     private ?string $cspHeaderValue = null;
 
