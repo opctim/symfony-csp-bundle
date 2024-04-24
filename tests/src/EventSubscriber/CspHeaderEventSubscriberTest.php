@@ -72,6 +72,7 @@ class CspHeaderEventSubscriberTest extends TestCase
             new Response('')
         );
 
+        $subscriber->onKernelRequest();
         $subscriber->onKernelResponse($responseEvent);
 
         self::assertTrue($inlineSubscriber->received);
@@ -96,6 +97,7 @@ class CspHeaderEventSubscriberTest extends TestCase
             new Response('')
         );
 
+        $subscriber->onKernelRequest();
         $subscriber->onKernelResponse($responseEvent);
 
         $headerKeys = [

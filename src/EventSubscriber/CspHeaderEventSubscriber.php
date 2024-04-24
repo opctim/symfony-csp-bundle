@@ -11,11 +11,14 @@ use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\Event\ResponseEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 
-readonly class CspHeaderEventSubscriber implements EventSubscriberInterface
+class CspHeaderEventSubscriber implements EventSubscriberInterface
 {
+    private string $cspHeader = '';
+
+
     public function __construct(
-        private CspHeaderBuilderService  $headerBuilderService,
-        private EventDispatcherInterface $eventDispatcher
+        private readonly CspHeaderBuilderService  $headerBuilderService,
+        private readonly EventDispatcherInterface $eventDispatcher
     )
     {}
 
@@ -29,8 +32,17 @@ readonly class CspHeaderEventSubscriber implements EventSubscriberInterface
 
     public function onKernelRequest(): void
     {
-        // Warm-Up. This creates the nonce tokens before being needed.
-        $this->headerBuilderService->build();
+        $addCspHeaderEvent = new AddCspHeaderEvent();
+
+        $this->eventDispatcher->dispatch($addCspHeaderEvent, AddCspHeaderEvent::NAME);
+
+        if ($addCspHeaderEvent->isModified()) {
+            $this->cspHeader = $addCspHeaderEvent->getCspHeaderValue();
+
+            return;
+        }
+
+        $this->cspHeader = $this->headerBuilderService->build();
     }
 
     public function onKernelResponse(ResponseEvent $event): void
@@ -41,18 +53,8 @@ readonly class CspHeaderEventSubscriber implements EventSubscriberInterface
             'X-WebKit-CSP'
         ];
 
-        $addCspHeaderEvent = new AddCspHeaderEvent();
-
-        $this->eventDispatcher->dispatch($addCspHeaderEvent, AddCspHeaderEvent::NAME);
-
-        if ($addCspHeaderEvent->isModified()) {
-            $cspHeader = $addCspHeaderEvent->getCspHeaderValue();
-        } else {
-            $cspHeader = $this->headerBuilderService->build();
-        }
-
         foreach ($headerKeys as $headerKey) {
-            $event->getResponse()->headers->set($headerKey, $cspHeader);
+            $event->getResponse()->headers->set($headerKey, $this->cspHeader);
         }
     }
 }
