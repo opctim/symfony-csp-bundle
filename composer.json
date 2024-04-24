@@ -33,7 +33,7 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "Opctim\\CspBundle\\Tests\\": "tests/"
+      "Opctim\\CspBundle\\Tests\\": "tests/src/"
     }
   },
   "require-dev": {
