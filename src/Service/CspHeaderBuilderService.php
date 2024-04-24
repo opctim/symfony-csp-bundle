@@ -5,12 +5,20 @@ namespace Opctim\CspBundle\Service;
 
 class CspHeaderBuilderService
 {
+    private CspNonceService $cspNonceService;
+    private array $alwaysAdd = [];
+    private array $directives = [];
+
     public function __construct(
-        private CspNonceService $cspNonceService,
-        private array $alwaysAdd = [],
-        private array $directives = []
+        CspNonceService $cspNonceService,
+        array $alwaysAdd = [],
+        array $directives = []
     )
-    {}
+    {
+        $this->directives = $directives;
+        $this->alwaysAdd = $alwaysAdd;
+        $this->cspNonceService = $cspNonceService;
+    }
 
     public function build(?array $alwaysAddOverride = null, ?array $directivesOverride = null): string
     {

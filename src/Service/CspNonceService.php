@@ -21,14 +21,20 @@ class CspNonceService
      */
     public function getNonce(string $handle): string
     {
-        return $this->nonceTokens[$handle] ?? throw new NonceHandleNotFoundException($handle);
+        $nonceToken = $this->nonceTokens[$handle] ?? null;
+
+        if (!$nonceToken) {
+            throw new NonceHandleNotFoundException($handle);
+        }
+
+        return $nonceToken;
     }
 
     protected function createNonceToken(): string
     {
         try {
             $randomBytes = random_bytes(8);
-        } catch (Exception) {
+        } catch (Exception $e) {
             $randomBytes = openssl_random_pseudo_bytes(8);
         }
 

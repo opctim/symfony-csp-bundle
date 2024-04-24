@@ -7,8 +7,12 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 class Configuration implements ConfigurationInterface
 {
-    public function __construct(private string $alias)
-    {}
+    private string $alias;
+
+    public function __construct(string $alias)
+    {
+        $this->alias = $alias;
+    }
 
     public function getConfigTreeBuilder(): TreeBuilder
     {
