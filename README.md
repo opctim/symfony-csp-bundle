@@ -245,3 +245,12 @@ class ModifyCspHeaderEventSubscriber implements EventSubscriberInterface
 }
 ```
 
+## Tests
+
+Tests are located inside the `tests/` folder and can be run with `vendor/bin/phpunit`:
+
+```shell
+composer install
+
+vendor/bin/phpunit       
+```
