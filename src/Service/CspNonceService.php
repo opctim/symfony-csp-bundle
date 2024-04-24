@@ -13,7 +13,7 @@ class CspNonceService
 
     public function addNonce(string $handle): string
     {
-        return $this->nonceTokens[$handle] = $this->createNonceToken();
+        return $this->nonceTokens[$handle] = $this->nonceTokens[$handle] ?? $this->createNonceToken();
     }
 
     /**

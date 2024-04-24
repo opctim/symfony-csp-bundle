@@ -7,6 +7,7 @@ use Opctim\CspBundle\Event\AddCspHeaderEvent;
 use Opctim\CspBundle\Service\CspHeaderBuilderService;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\Event\ResponseEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 
@@ -21,8 +22,15 @@ readonly class CspHeaderEventSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents(): array
     {
         return [
+            KernelEvents::REQUEST => 'onKernelRequest',
             KernelEvents::RESPONSE => 'onKernelResponse'
         ];
+    }
+
+    public function onKernelRequest(): void
+    {
+        // Warm-Up. This creates the nonce tokens before being needed.
+        $this->headerBuilderService->build();
     }
 
     public function onKernelResponse(ResponseEvent $event): void
