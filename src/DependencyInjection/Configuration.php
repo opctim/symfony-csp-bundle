@@ -30,6 +30,7 @@ class Configuration implements ConfigurationInterface
                     ->children()
                         ->scalarNode('url')->defaultNull()->end()
                         ->scalarNode('route')->defaultNull()->end()
+                        ->arrayNode('routeParams')->defaultValue([])->end()
                         ->integerNode('chance')->max(100)->min(0)->defaultValue(100)->end()
                     ->end()
                 ->end()

@@ -83,7 +83,11 @@ class CspHeaderBuilderService
         }
 
         if (!empty($report['route'])) {
-            return $this->urlGenerator->generate($report['route'], [], UrlGeneratorInterface::ABSOLUTE_URL);
+            return $this->urlGenerator->generate(
+                $report['route'],
+                $report['routeParams'] ?? [],
+                UrlGeneratorInterface::ABSOLUTE_URL
+            );
         }
 
         return null;
