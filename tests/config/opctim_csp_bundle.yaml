@@ -1,18 +1,13 @@
-services:
-    _defaults:
-        autowire: true
-        autoconfigure: true
-        public: true
-
-    Opctim\CspBundle\:
-        public: true
-        resource: '../../src/*'
-        exclude: '../../src/{DependencyInjection,Exception,Resources,Entity,Migrations,Tests,Event}'
-
 opctim_csp_bundle:
 
     always_add:
         - '*.example.com'
+
+    report:
+        url: null
+        route: 'test'
+        route_params: [ ]
+        chance: 100
 
     directives:
         default-src:

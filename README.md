@@ -36,7 +36,7 @@ opctim_csp_bundle:
     report:
         url: null
         route: null
-        routeParams: []
+        route_params: []
         chance: 100
 
     directives:
@@ -163,7 +163,7 @@ opctim_csp_bundle:
     report:
         url: null
         route: my_awesome_controller_action
-        routeParams: []
+        route_params: []
         chance: 100
 
     directives:
@@ -175,7 +175,7 @@ opctim_csp_bundle:
 
 - `url` - `optional` You can pass an external URL here, which the browsers should report to.
 - `route` - `optional` If you want to use your controller action to receive reports. This will use the UrlGenerator to generate an absolute url for you.
-- `routeParams` - `optional` You can pass additional route parameters here, if you're using the `route` parameter.
+- `route_params` - `optional` You can pass additional route parameters here, if you're using the `route` parameter.
 - `chance` - `optional` This fields' unit is percent. It specifies how high the chance should be to add the report directives to the response.
 
 **Here is some pseudocode explaining the change option:**
