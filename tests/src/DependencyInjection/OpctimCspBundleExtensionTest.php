@@ -23,6 +23,12 @@ class OpctimCspBundleExtensionTest extends TestCase
             'origin'
         ];
 
+        $report = [
+            'url' => null,
+            'route' => 'my_route',
+            'chance' => 100
+        ];
+
         $directives = [
             'test' => [
                 'origin',
@@ -33,6 +39,7 @@ class OpctimCspBundleExtensionTest extends TestCase
             [
                 [
                     'always_add' => $alwaysAdd,
+                    'report' => $report,
                     'directives' => $directives
                 ]
             ],
@@ -43,5 +50,6 @@ class OpctimCspBundleExtensionTest extends TestCase
 
         self::assertEquals($definition->getArgument('$alwaysAdd'), $alwaysAdd);
         self::assertEquals($definition->getArgument('$directives'), $directives);
+        self::assertEquals($definition->getArgument('$report'), $report);
     }
 }

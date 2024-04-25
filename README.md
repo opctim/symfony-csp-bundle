@@ -32,6 +32,11 @@ In your `config/` directory, add / edit `opctim_csp_bundle.yaml`:
 opctim_csp_bundle:
     
     always_add: []
+    
+    report:
+        url: ~
+        route: ~
+        chance: 100
 
     directives:
         default-src:
@@ -134,6 +139,52 @@ when@dev:
             connect-src:
                 - 'some.external.additional.host.com'
 ```
+
+### The report option
+
+This bundle provides you with an easy way to configure the report feature of CSP, 
+which tells browsers to tell your backend if your CSP configuration denies specific resources.
+There are currently two implementations in browsers - report-uri & report-to:
+- https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/report-uri
+- https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/report-to
+
+So, according to the MDN docs, this bundle adds the report-uri directive & 
+the Reporting-Endpoint header to support new Browsers in the future.
+
+This bundle provides a backwards compatible implementation, which should be supported by all browsers.
+
+```yaml
+# config/packages/opctim_csp_bundle.yaml
+
+opctim_csp_bundle:
+    always_add: []
+    
+    report:
+        url: ~
+        route: my_awesome_controller_action
+        chance: 100
+
+    directives:
+        default-src:
+            - "'self'"
+            - 'data:'
+            - '*.example.com'
+```
+
+- `url` - `optional` You can pass an external URL here, which the browsers should report to.
+- `route` - `optional` If you want to use your controller action to receive reports. This will use the UrlGenerator to generate an absolute url for you.
+- `chance` - `optional` This fields' unit is percent. It specifies how high the chance should be to add the report directives to the response.
+
+**Here is some pseudocode explaining the change option:**
+
+```php
+if (random_int(0, 99) < $chance) {
+    $someService->addReportHeaders();
+}
+```
+
+This means, that for a chance of 100%, it will run every time. Depending on traffic of your app, it is recommended 
+to set a chance of around 5-10%, to not get flooded by CSP log messages.
 
 ### Dynamic nonce tokens
 

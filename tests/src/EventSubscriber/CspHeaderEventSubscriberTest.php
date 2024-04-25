@@ -13,8 +13,10 @@ use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\Event\ResponseEvent;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
+use Symfony\Component\Routing\Generator\UrlGenerator;
 
 class CspHeaderEventSubscriberTest extends TestCase
 {
@@ -22,8 +24,12 @@ class CspHeaderEventSubscriberTest extends TestCase
     {
         $nonceService = new CspNonceService();
 
+        $urlGenerator = $this->createMock(UrlGenerator::class);
+        $urlGenerator->method('generate')->willReturn('https://example.com');
+
         $cspHeaderBuilderService = new CspHeaderBuilderService(
             $nonceService,
+            $urlGenerator,
             [ 'alwaysThere' ],
             [
                 'test1' => [
@@ -35,6 +41,11 @@ class CspHeaderEventSubscriberTest extends TestCase
                     'origin1',
                     'origin2',
                 ]
+            ],
+            [
+                'url' => null,
+                'route' => 'my-route',
+                'chance' => 100
             ]
         );
 
@@ -72,8 +83,19 @@ class CspHeaderEventSubscriberTest extends TestCase
             new Response('')
         );
 
-        $subscriber->onKernelRequest();
+        $requestEvent = new RequestEvent(
+            new TestKernel('test', true),
+            new Request(),
+            HttpKernelInterface::MAIN_REQUEST
+        );
+
+        $subscriber->onKernelRequest($requestEvent);
         $subscriber->onKernelResponse($responseEvent);
+
+        self::assertEquals(
+            'csp-endpoint="https://example.com"',
+            $responseEvent->getResponse()->headers->get('Reporting-Endpoint')
+        );
 
         self::assertTrue($inlineSubscriber->received);
 
@@ -85,7 +107,7 @@ class CspHeaderEventSubscriberTest extends TestCase
 
         foreach ($headerKeys as $headerKey) {
             self::assertEquals(
-                'test1 alwaysThere origin1 origin2 nonce-' . $nonceService->getNonce('test') . '; test2 alwaysThere origin1 origin2;',
+                'test1 alwaysThere origin1 origin2 nonce-' . $nonceService->getNonce('test') . '; test2 alwaysThere origin1 origin2; report-uri https://example.com; report-to csp-endpoint;',
                 $responseEvent->getResponse()->headers->get($headerKey)
             );
         }
@@ -97,7 +119,13 @@ class CspHeaderEventSubscriberTest extends TestCase
             new Response('')
         );
 
-        $subscriber->onKernelRequest();
+        $requestEvent = new RequestEvent(
+            new TestKernel('test', true),
+            new Request(),
+            HttpKernelInterface::MAIN_REQUEST
+        );
+
+        $subscriber->onKernelRequest($requestEvent);
         $subscriber->onKernelResponse($responseEvent);
 
         $headerKeys = [

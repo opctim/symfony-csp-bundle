@@ -25,6 +25,15 @@ class Configuration implements ConfigurationInterface
                     ->scalarPrototype()->end()
                 ->end()
 
+                ->arrayNode('report')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->scalarNode('url')->defaultNull()->end()
+                        ->scalarNode('route')->defaultNull()->end()
+                        ->integerNode('chance')->max(100)->min(0)->defaultValue(100)->end()
+                    ->end()
+                ->end()
+
                 ->arrayNode('directives')
                     ->arrayPrototype()
                         ->scalarPrototype()->end()

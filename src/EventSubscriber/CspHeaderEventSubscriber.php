@@ -58,8 +58,15 @@ class CspHeaderEventSubscriber implements EventSubscriberInterface
             'X-WebKit-CSP'
         ];
 
+        $response = $event->getResponse();
+        $reportingEndpointHeader = $this->headerBuilderService->buildReportingEndpointsHeader();
+
+        if ($reportingEndpointHeader) {
+            $response->headers->set('Reporting-Endpoint', $reportingEndpointHeader);
+        }
+
         foreach ($headerKeys as $headerKey) {
-            $event->getResponse()->headers->set($headerKey, $this->cspHeader);
+            $response->headers->set($headerKey, $this->cspHeader);
         }
     }
 }

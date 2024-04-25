@@ -34,6 +34,7 @@ class OpctimCspBundleExtension extends Extension
 
         $parser->setArgument('$alwaysAdd', $configs['always_add']);
         $parser->setArgument('$directives', $configs['directives']);
+        $parser->setArgument('$report', $configs['report']);
     }
 
     /**
