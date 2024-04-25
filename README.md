@@ -116,7 +116,7 @@ when@dev:
             - '*.example.local'
 ```
 
-You also can use `when@dev` and the yaml anchor / alias syntax to add origins to specific directives conditionally:
+You also can use `when@dev` to add origins to specific directives conditionally:
 
 ```yaml
 # config/packages/opctim_csp_bundle.yaml
@@ -124,7 +124,7 @@ You also can use `when@dev` and the yaml anchor / alias syntax to add origins to
 opctim_csp_bundle:
     always_add: []
     
-    directives: &csp_headers # <- This is an anchor, you can name it as you like
+    directives:
         default-src:
             - "'self'"
             - 'data:'
@@ -135,8 +135,7 @@ opctim_csp_bundle:
     
 when@dev:
     opctim_csp_bundle:
-        directives:
-            <<: *csp_headers # <- This alias "merges" the config in here (has to have the same name as above)  
+        directives:  
             connect-src:
                 - 'some.external.additional.host.com'
 ```

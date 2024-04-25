@@ -107,7 +107,7 @@ class CspHeaderEventSubscriberTest extends TestCase
 
         foreach ($headerKeys as $headerKey) {
             self::assertEquals(
-                'test1 alwaysThere origin1 origin2 nonce-' . $nonceService->getNonce('test') . '; test2 alwaysThere origin1 origin2; report-uri https://example.com; report-to csp-endpoint;',
+                "test1 alwaysThere origin1 origin2 'nonce-" . $nonceService->getNonce('test') . "'" . '; test2 alwaysThere origin1 origin2; report-uri https://example.com; report-to csp-endpoint;',
                 $responseEvent->getResponse()->headers->get($headerKey)
             );
         }

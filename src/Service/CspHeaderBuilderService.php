@@ -115,7 +115,7 @@ class CspHeaderBuilderService
                 ) {
                     $handle = trim($matches['HANDLE']);
 
-                    return 'nonce-' . $this->cspNonceService->addNonce($handle);
+                    return "'nonce-" . $this->cspNonceService->addNonce($handle) . "'";
                 }
 
                 return trim($origin);

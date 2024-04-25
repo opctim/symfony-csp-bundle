@@ -26,7 +26,8 @@ class OpctimCspBundleExtensionTest extends TestCase
         $report = [
             'url' => null,
             'route' => 'my_route',
-            'chance' => 100
+            'chance' => 100,
+            'route_params' => []
         ];
 
         $directives = [
