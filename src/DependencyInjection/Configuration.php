@@ -37,6 +37,7 @@ class Configuration implements ConfigurationInterface
                 ->end()
 
                 ->arrayNode('directives')
+                    ->normalizeKeys(false)
                     ->arrayPrototype()
                         ->normalizeKeys(false)
                         ->scalarPrototype()->end()
