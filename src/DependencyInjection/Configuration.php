@@ -37,6 +37,7 @@ class Configuration implements ConfigurationInterface
                                 ->normalizeKeys(false)
                                 ->scalarPrototype()->end()
                             ->end()
+                            ->scalarPrototype()->end()
                         ->end()
                         ->integerNode('chance')->max(100)->min(0)->defaultValue(100)->end()
                     ->end()
