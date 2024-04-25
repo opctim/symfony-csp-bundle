@@ -42,7 +42,7 @@ class CspHeaderBuilderServiceTest extends TestCase
         $csp = $service->build();
 
         self::assertEquals(
-            'test1 alwaysThere origin1 origin2 nonce-' . $nonceService->getNonce('test') .
+            "test1 alwaysThere origin1 origin2 'nonce-" . $nonceService->getNonce('test') . "'" .
             '; test2 alwaysThere origin1 origin2; report-uri https://example.com; report-to csp-endpoint;',
             $csp
         );

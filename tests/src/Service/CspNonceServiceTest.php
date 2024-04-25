@@ -23,4 +23,16 @@ class CspNonceServiceTest extends TestCase
 
         $service->getNonce('non-existent');
     }
+
+    public function testExisting(): void
+    {
+        $service = new CspNonceService();
+
+        $service->addNonce('test');
+
+        self::assertEquals(
+            $service->addNonce('test'),
+            $service->addNonce('test')
+        );
+    }
 }
