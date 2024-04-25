@@ -34,8 +34,8 @@ opctim_csp_bundle:
     always_add: []
     
     report:
-        url: ~
-        route: ~
+        url: null
+        route: null
         chance: 100
 
     directives:
@@ -160,7 +160,7 @@ opctim_csp_bundle:
     always_add: []
     
     report:
-        url: ~
+        url: null
         route: my_awesome_controller_action
         chance: 100
 
