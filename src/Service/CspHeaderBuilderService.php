@@ -85,7 +85,7 @@ class CspHeaderBuilderService
         if (!empty($report['route'])) {
             return $this->urlGenerator->generate(
                 $report['route'],
-                $report['routeParams'] ?? [],
+                $report['route_params'] ?? [],
                 UrlGeneratorInterface::ABSOLUTE_URL
             );
         }
