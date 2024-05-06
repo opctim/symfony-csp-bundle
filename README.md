@@ -116,6 +116,8 @@ when@dev:
             - '*.example.local'
 ```
 
+**Important:** If you add `'none'` as the first and only directive, this directive will be skipped for the `always_add` functionality. This feature was added in `1.1.4` 
+
 You also can use `when@dev` to add origins to specific directives conditionally:
 
 ```yaml
