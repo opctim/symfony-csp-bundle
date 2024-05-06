@@ -38,8 +38,14 @@ class CspHeaderBuilderService
         $lines = [];
 
         foreach ($directives as $directiveName => $origins) {
+            $hasNone = count($origins) === 1 && $origins[0] === "'none'";
+
+            if (!$hasNone) {
+                $origins = [ ...$alwaysAdd, ...$origins ];
+            }
+
             $origins = $this->parseNonceExpressions(
-                [ ...$alwaysAdd, ...$origins ]
+                $origins
             );
 
             $lines[] = $directiveName . ' ' . implode(' ', $origins) . ';';
