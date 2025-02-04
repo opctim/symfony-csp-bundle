@@ -45,7 +45,9 @@ class CspHeaderBuilderService
             }
 
             $origins = $this->parseNonceExpressions(
-                $origins
+                array_unique(
+                    $origins
+                )
             );
 
             $lines[] = $directiveName . ' ' . implode(' ', $origins) . ';';
