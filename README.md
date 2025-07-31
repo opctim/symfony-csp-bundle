@@ -245,11 +245,7 @@ The bundle hooks into the Symfony event system and generates fresh nonce tokens 
 On request, the bundle prepares the CSP header directives to be written to headers on response. 
 Here, the `nonce()` expressions from `opctim_csp_bundle.yaml` are parsed.
 
-The bundle will add this value to the Response in the following three headers for compatibility across browsers:
-
-- Content-Security-Policy 
-- X-Content-Security-Policy
-- X-WebKit-CSP
+The bundle will add this value to the Response in the Content-Security-Policy header.
 
 If you want to modify the CSP header before it is written to the response, 
 you can hook into the generation by subscribing to the `opctim_csp_bundle.add_csp_header` event:

@@ -53,9 +53,7 @@ class CspHeaderEventSubscriber implements EventSubscriberInterface
     public function onKernelResponse(ResponseEvent $event): void
     {
         $headerKeys = [
-            'Content-Security-Policy',
-            'X-Content-Security-Policy',
-            'X-WebKit-CSP'
+            'Content-Security-Policy'
         ];
 
         $response = $event->getResponse();

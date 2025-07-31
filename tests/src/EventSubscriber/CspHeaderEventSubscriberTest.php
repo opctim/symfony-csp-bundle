@@ -100,9 +100,7 @@ class CspHeaderEventSubscriberTest extends TestCase
         self::assertTrue($inlineSubscriber->received);
 
         $headerKeys = [
-            'Content-Security-Policy',
-            'X-Content-Security-Policy',
-            'X-WebKit-CSP'
+            'Content-Security-Policy'
         ];
 
         foreach ($headerKeys as $headerKey) {
@@ -129,9 +127,7 @@ class CspHeaderEventSubscriberTest extends TestCase
         $subscriber->onKernelResponse($responseEvent);
 
         $headerKeys = [
-            'Content-Security-Policy',
-            'X-Content-Security-Policy',
-            'X-WebKit-CSP'
+            'Content-Security-Policy'
         ];
 
         foreach ($headerKeys as $headerKey) {
