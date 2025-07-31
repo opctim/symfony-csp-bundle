@@ -1,6 +1,6 @@
 # Symfony CSP Bundle
 
-[![Latest Stable Version](http://poser.pugx.org/opctim/symfony-csp-bundle/v)](https://packagist.org/packages/opctim/symfony-csp-bundle) [![Total Downloads](http://poser.pugx.org/opctim/symfony-csp-bundle/downloads)](https://packagist.org/packages/opctim/symfony-csp-bundle) [![Latest Unstable Version](http://poser.pugx.org/opctim/symfony-csp-bundle/v/unstable)](https://packagist.org/packages/opctim/symfony-csp-bundle) [![License](http://poser.pugx.org/opctim/symfony-csp-bundle/license)](https://packagist.org/packages/opctim/symfony-csp-bundle) [![PHP Version Require](http://poser.pugx.org/opctim/symfony-csp-bundle/require/php)](https://packagist.org/packages/opctim/symfony-csp-bundle)
+[![Latest Stable Version](https://poser.pugx.org/opctim/symfony-csp-bundle/v)](https://packagist.org/packages/opctim/symfony-csp-bundle) [![Total Downloads](https://poser.pugx.org/opctim/symfony-csp-bundle/downloads)](https://packagist.org/packages/opctim/symfony-csp-bundle) [![Latest Unstable Version](https://poser.pugx.org/opctim/symfony-csp-bundle/v/unstable)](https://packagist.org/packages/opctim/symfony-csp-bundle) [![License](https://poser.pugx.org/opctim/symfony-csp-bundle/license)](https://packagist.org/packages/opctim/symfony-csp-bundle) [![PHP Version Require](https://poser.pugx.org/opctim/symfony-csp-bundle/require/php)](https://packagist.org/packages/opctim/symfony-csp-bundle)
 
 Ever fought with CSP headers? Me too. It always used to be a pain to configure CSP headers properly.
 
