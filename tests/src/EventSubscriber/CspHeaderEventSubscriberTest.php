@@ -94,7 +94,7 @@ class CspHeaderEventSubscriberTest extends TestCase
 
         self::assertEquals(
             'csp-endpoint="https://example.com"',
-            $responseEvent->getResponse()->headers->get('Reporting-Endpoint')
+            $responseEvent->getResponse()->headers->get('Reporting-Endpoints')
         );
 
         self::assertTrue($inlineSubscriber->received);

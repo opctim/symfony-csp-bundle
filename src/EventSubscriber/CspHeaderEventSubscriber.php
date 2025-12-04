@@ -57,10 +57,10 @@ class CspHeaderEventSubscriber implements EventSubscriberInterface
         ];
 
         $response = $event->getResponse();
-        $reportingEndpointHeader = $this->headerBuilderService->buildReportingEndpointsHeader();
+        $reportingEndpointsHeader = $this->headerBuilderService->buildReportingEndpointsHeader();
 
-        if ($reportingEndpointHeader) {
-            $response->headers->set('Reporting-Endpoint', $reportingEndpointHeader);
+        if ($reportingEndpointsHeader) {
+            $response->headers->set('Reporting-Endpoints', $reportingEndpointsHeader);
         }
 
         foreach ($headerKeys as $headerKey) {
