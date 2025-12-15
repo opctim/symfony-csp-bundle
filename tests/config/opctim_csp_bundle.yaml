@@ -1,5 +1,4 @@
 opctim_csp_bundle:
-
     always_add:
         - '*.example.com'
 

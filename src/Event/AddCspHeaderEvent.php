@@ -12,13 +12,12 @@ class AddCspHeaderEvent extends Event
 
     private ?string $cspHeaderValue = null;
     private bool $isModified = false;
-    private Request $request;
 
 
-    public function __construct(Request $request)
-    {
-        $this->request = $request;
-    }
+    public function __construct(
+        private readonly Request $request
+    )
+    {}
 
     public function getCspHeaderValue(): ?string
     {

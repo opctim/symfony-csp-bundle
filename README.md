@@ -13,8 +13,8 @@ It even helps you with adding dynamic [Nonce-Tokens](https://developer.mozilla.o
 
 ## Requirements
 
-- PHP >= 7.4.33 with OpenSSL extension installed
-- Symfony >= 5.4
+- PHP >= 8.1 with OpenSSL extension installed
+- Symfony >= 6.4
 
 ## Installation
 

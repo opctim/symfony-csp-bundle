@@ -34,7 +34,7 @@ class CspNonceService
     {
         try {
             $randomBytes = random_bytes(8);
-        } catch (Exception $e) {
+        } catch (Exception) {
             $randomBytes = openssl_random_pseudo_bytes(8);
         }
 

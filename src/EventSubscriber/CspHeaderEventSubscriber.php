@@ -14,18 +14,12 @@ use Symfony\Component\HttpKernel\KernelEvents;
 class CspHeaderEventSubscriber implements EventSubscriberInterface
 {
     private string $cspHeader = '';
-    private EventDispatcherInterface $eventDispatcher;
-    private CspHeaderBuilderService $headerBuilderService;
-
 
     public function __construct(
-        CspHeaderBuilderService  $headerBuilderService,
-        EventDispatcherInterface $eventDispatcher
+        private readonly CspHeaderBuilderService  $headerBuilderService,
+        private readonly EventDispatcherInterface $eventDispatcher
     )
-    {
-        $this->headerBuilderService = $headerBuilderService;
-        $this->eventDispatcher = $eventDispatcher;
-    }
+    {}
 
     public static function getSubscribedEvents(): array
     {

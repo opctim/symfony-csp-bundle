@@ -8,27 +8,14 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class CspHeaderBuilderService
 {
-    private CspNonceService $cspNonceService;
-    private UrlGeneratorInterface $urlGenerator;
-    private array $alwaysAdd;
-    private array $directives;
-    private array $report;
-
-
     public function __construct(
-        CspNonceService $cspNonceService,
-        UrlGeneratorInterface $urlGenerator,
-        array $alwaysAdd = [],
-        array $directives = [],
-        array $report = []
+        private readonly CspNonceService       $cspNonceService,
+        private readonly UrlGeneratorInterface $urlGenerator,
+        private readonly array                 $alwaysAdd = [],
+        private readonly array                 $directives = [],
+        private readonly array                 $report = []
     )
-    {
-        $this->cspNonceService = $cspNonceService;
-        $this->urlGenerator = $urlGenerator;
-        $this->directives = $directives;
-        $this->alwaysAdd = $alwaysAdd;
-        $this->report = $report;
-    }
+    {}
 
     public function build(?array $alwaysAddOverride = null, ?array $directivesOverride = null): string
     {
